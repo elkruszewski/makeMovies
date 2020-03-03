@@ -1,0 +1,13 @@
+<p-card title={{actor.name}} subtitle={{actor.surname}}>
+  <p-header>
+      <img *ngIf="actor.img == null || actor.img === '' " src="https://picsum.photos/g/150/200?random">
+      <img *ngIf="actor.img != null" src="{{actor.img}}">
+  </p-header>
+    <div>
+      Data urodzenia: {{actor.birthdate}}<br>
+    </div>
+    <p-footer>
+        <button pButton type="button" label="Szczegóły" icon="pi pi-angle-right" routerLink="/actor/{{actor.id}}"></button>
+      </p-footer>
+   </p-card>
+   

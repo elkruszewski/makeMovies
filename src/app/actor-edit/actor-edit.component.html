@@ -1,0 +1,19 @@
+<h3 class="header">Edycja aktora</h3>
+<div class="form-group">
+        <label for="name">Imię:</label>
+        <input [(ngModel)]="actor.name" type="text" class="form-control" id="name" placeholder="Imię">
+      </div>
+      <div class="form-group">
+              <label for="surname">Nazwisko:</label>
+              <input [(ngModel)]="actor.surname" type="text" class="form-control" id="surname" placeholder="Nazwisko">
+      </div>
+      <div class="form-group">
+              <label for="photo">Zdjęcie:</label>
+              <input [(ngModel)]="actor.img" type="text" class="form-control" id="photo" placeholder="Zdjęcie">
+      </div>
+      <div class="form-group">
+              <label for="birthdate">Data urodzenia:</label><br>
+              <p-calendar [(ngModel)]="actor.birthdate" id="birthdate" dateFormat="dd-mm-yy"></p-calendar>
+      </div>
+      <button class="btn btn-primary" type="button" (click)="editActor()">Edytuj aktora</button> 
+      

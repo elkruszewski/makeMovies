@@ -1,0 +1,43 @@
+<div *ngIf="showAdd">
+    <app-actor-add [showAdd]="showAdd" (showAddChange)="afterActorAdded()"></app-actor-add>
+  </div>
+  <div *ngIf="!showAdd">
+    <h3 class="header">Edycja aktorów</h3>
+      <p-dataView #dv [value]="actors" [loading]="loading" [paginator]="true" [rows]="10" [sortField]="sortField" filterBy="name,surname">
+        <p-header>
+            <div class="ui-g">
+                    <div class="ui-g-3"><p-dropdown  [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sortuj"
+                        (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown></div>
+                    <div class="ui-g-7 filter-container"><input type="search" pInputText placeholder="Wyszukaj" class="form-control" style="width:40%;padding:4px" (keyup)="dv.filter($event.target.value)"></div>
+                <div class="ui-g-2">
+                    <button pButton type="button" icon="pi pi-plus" label="Dodaj aktora" (click)="showAdd = !showAdd" class="ui-button-success"></button>
+                </div>
+            </div>
+        </p-header>
+        <ng-template let-actor pTemplate="listItem">
+            <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+                <div class="ui-g-12 ui-md-3" style="text-align:center">
+                    <img *ngIf="actor.img == null || actor.img === '' " src="https://picsum.photos/g/150/200?random">
+                    <img *ngIf="actor.img != null" src="{{actor.img}}">
+                </div>
+                <div class="ui-g-12 ui-md-6 film-details">
+                    <div class="ui-g">
+                        <div class="ui-g-4 ui-sm-6">Imię: </div>
+                      <div class="ui-g-8 ui-sm-6"><b>{{actor.name}}</b></div>
+  
+                      <div class="ui-g-4 ui-sm-6">Nazwisko: </div>
+                      <div class="ui-g-8 ui-sm-6"><b>{{actor.surname}}</b></div>
+  
+                      <div class="ui-g-4 ui-sm-6">Data urodzenia: </div>
+                      <div class="ui-g-8 ui-sm-6"><b> {{actor.birthdate}}</b></div>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-3 search-icon">
+                    <button pButton type="button" icon="pi pi-pencil" label="Edytuj" routerLink="{{actor.id}}" class="ui-button-warning editButton"></button>
+                    <button pButton type="button" icon="pi pi-times" label="Usuń" (click)="deleteActor(actor)" class="ui-button-danger editButton"></button>
+                </div>
+            </div>
+        </ng-template>
+      </p-dataView>
+  </div>
+  

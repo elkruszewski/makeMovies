@@ -1,0 +1,26 @@
+<h3 class="header">Dodawanie filmu</h3>
+        <div class="form-group">
+          <label for="title">Tytuł:</label>
+          <input [(ngModel)]="film.title" type="text" class="form-control" id="title" placeholder="Tytuł">
+        </div>
+        <div class="form-group">
+                <label for="director">Reżyser:</label>
+                <input [(ngModel)]="film.director" type="text" class="form-control" id="director" placeholder="Reżyser">
+        </div>
+        <div class="form-group">
+                <label for="genre">Gatunek:</label>
+                <input [(ngModel)]="film.genre" type="text" class="form-control" id="genre" placeholder="Gatunek">
+        </div>
+        <div class="form-group">
+                <label for="cover">Okładka:</label>
+                <input [(ngModel)]="film.img" type="text" class="form-control" id="cover" placeholder="Okładka">
+        </div>
+        <div class="form-group">
+          <label for="select">Aktorzy</label><br>
+          <p-multiSelect [options]="actors" [(ngModel)]="selectedActors" optionLabel="surname" id="select" defaultLabel="Wybierz aktorów"></p-multiSelect>
+        </div>
+        <div class="form-group">
+                <label for="premiere">Premiera:</label><br>
+                <p-calendar [(ngModel)]="film.premiere" id="premiere" dateFormat="dd-mm-yy"></p-calendar>
+        </div>
+        <button class="btn btn-primary" type="button" (click)="addFilm()">Dodaj film</button> 

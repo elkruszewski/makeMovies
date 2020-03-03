@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~primeng/resources/themes/omega/theme.css';
+@import '~primeicons/primeicons.css';
+@import '~primeng/resources/primeng.min.css';
+
+.container {
+    padding-top: 50px;
+}
+
+.header {
+    border-bottom: 1px black solid;
+    margin-bottom: 20px;
+}
+
+.editButton {
+    margin: 5px;
+}
+
+.ui-multiselect {
+    width: 100%;
+}
+
+.ui-card-title {
+    font-size: 1.3em;
+}

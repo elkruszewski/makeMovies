@@ -1,0 +1,42 @@
+<div class="film">
+    <div class="ui-g">
+        <div class="ui-g-3">
+            <img *ngIf="film.img == null || film.img === '' " src="https://picsum.photos/g/200/285?random">
+            <img *ngIf="film.img != null" src="{{film.img}}">
+        </div>
+        <div class="ui-g-3">
+          <h3>Tytuł: {{film.title}}</h3><br><br>
+          <h5>Premiera: {{film.premiere}}</h5>
+          <h5>Reżyser: {{film.director}}</h5>
+          <h5>Gatunek: {{film.genre}}</h5>
+        </div>
+    </div>
+  </div>  
+    <p-dataScroller *ngIf="film.actors !== undefined" [value]="film.actors" [rows]="10">
+        <p-header>
+            Lista aktorów grających w filmie:
+        </p-header>
+        <ng-template let-actor pTemplate="item">
+            <div class="ui-g actor-item">
+                <div class="ui-g-12 ui-md-3">
+                    <img *ngIf="actor.img == null || actor.img === '' " src="https://picsum.photos/g/150/200?random">
+                    <img *ngIf="actor.img != null" src="{{actor.img}}">
+                </div>
+                <div class="ui-g-12 ui-md-6">
+                    <div class="ui-g">
+                        <div class="ui-g-2 ui-sm-6">Imię: </div>
+                      <div class="ui-g-10 ui-sm-6"><b>{{actor.name}}</b></div>
+  
+                      <div class="ui-g-2 ui-sm-6">Nazwisko: </div>
+                      <div class="ui-g-10 ui-sm-6"><b>{{actor.surname}}</b></div>
+  
+                      <div class="ui-g-2 ui-sm-6">Data urodzenia: </div>
+                      <div class="ui-g-10 ui-sm-6"><b> {{actor.birthdate}}</b></div>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-3 search-icon">
+                        <button pButton type="button" icon="pi pi-angle-right" label="Szczegóły" routerLink="/actor/{{actor.id}}" style="margin-top: 70px"></button>
+                    </div>
+            </div>
+        </ng-template>
+    </p-dataScroller>

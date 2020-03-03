@@ -1,0 +1,22 @@
+<p-card title="{{ film.title }}" subtitle="{{ film.premiere }}">
+  <p-header>
+    <img
+      *ngIf="film.img == null || film.img === ''"
+      src="https://picsum.photos/g/200/285?random"
+    />
+    <img *ngIf="film.img != null" src="{{ film.img }}" />
+  </p-header>
+  <div>
+    Reżyser: {{ film.director }}<br />
+    Gatunek: {{ film.genre }}
+  </div>
+  <p-footer>
+    <button
+      pButton
+      type="button"
+      label="Szczegóły"
+      icon="pi pi-angle-right"
+      routerLink="film/{{ film.id }}"
+    ></button>
+  </p-footer>
+</p-card>

@@ -1,0 +1,45 @@
+<div *ngIf="showAdd">
+  <app-film-add [showAdd]="showAdd" (showAddChange)="afterFilmAdded()"></app-film-add>
+</div>
+<div *ngIf="!showAdd">
+  <h3 class="header">Edycja filmów</h3>
+    <p-dataView #dv [value]="films" [loading]="loading" [paginator]="true" [rows]="10" [sortField]="sortField" filterBy="title,director,genre">
+      <p-header>
+          <div class="ui-g">
+                <div class="ui-g-3"><p-dropdown  [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sortuj"
+                (onChange)="onSortChange($event)" [autoWidth]="false" [style]="{'min-width':'15em'}"></p-dropdown></div>
+            <div class="ui-g-7 filter-container"><input type="search" pInputText placeholder="Wyszukaj" class="form-control" style="width:40%;padding:4px" (keyup)="dv.filter($event.target.value)"></div>
+              <div class="ui-g-2" style="position:relative">
+                  <button pButton type="button" icon="pi pi-plus" label="Dodaj film" (click)="showAdd = !showAdd" class="ui-button-success"></button>
+              </div>
+          </div>
+      </p-header>
+      <ng-template let-film pTemplate="listItem">
+          <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+              <div class="ui-g-12 ui-md-3" style="text-align:center">
+                <img *ngIf="film.img == null || film.img === '' " src="https://picsum.photos/g/200/285?random">
+                <img *ngIf="film.img != null" src="{{film.img}}">
+              </div>
+              <div class="ui-g-12 ui-md-6 film-details">
+                  <div class="ui-g">
+                      <div class="ui-g-2 ui-sm-6">Tytuł: </div>
+                    <div class="ui-g-10 ui-sm-6"><b>{{film.title}}</b></div>
+
+                    <div class="ui-g-2 ui-sm-6">Reżyser: </div>
+                    <div class="ui-g-10 ui-sm-6"><b>{{film.director}}</b></div>
+
+                    <div class="ui-g-2 ui-sm-6">Premiera: </div>
+                    <div class="ui-g-10 ui-sm-6"><b> {{film.premiere}}</b></div>
+
+                    <div class="ui-g-2 ui-sm-6">Gatunek: </div>
+                    <div class="ui-g-10 ui-sm-6"><b>{{film.genre}}</b></div>
+                  </div>
+              </div>
+              <div class="ui-g-12 ui-md-3 search-icon">
+                  <button pButton type="button" icon="pi pi-pencil" label="Edytuj" routerLink="{{film.id}}" class="ui-button-warning editButton"></button>
+                  <button pButton type="button" icon="pi pi-times" label="Usuń" (click)="deleteFilm(film)" class="ui-button-danger editButton"></button>
+              </div>
+          </div>
+      </ng-template>
+    </p-dataView>
+</div>
