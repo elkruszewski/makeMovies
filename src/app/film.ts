@@ -7,5 +7,5 @@ export class Film {
   premiere: Date;
   title: string;
   img: string;
-  actors: Actor[];
+  actors: number[];
 }

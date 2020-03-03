@@ -1,6 +1,8 @@
 <p-card title="{{ film.title }}" subtitle="{{ film.premiere }}">
   <p-header>
     <img
+      class
+      img
       *ngIf="film.img == null || film.img === ''"
       src="https://picsum.photos/g/200/285?random"
     />

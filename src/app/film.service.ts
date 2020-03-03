@@ -5,6 +5,7 @@ import { Observable, of } from "rxjs";
 import { map } from "rxjs/operators";
 import { Actor } from "./actor";
 import { FILM_MOCK } from "./mocks/film-mock";
+import { ACTOR_MOCK } from "./mocks/actor-mock";
 
 @Injectable({
   providedIn: "root"
@@ -18,12 +19,28 @@ export class FilmService {
     return of(FILM_MOCK.content);
   }
 
-  getFilm(id: number): Observable<Film> {
-    return this.http.get<Film>(this.baseUrl + "films/" + id);
+  getFilm(id: number): Observable<any> {
+    return of(FILM_MOCK.content.find(x => x.id == id));
   }
 
-  getFilmActors(id: number): Observable<Actor[]> {
-    return this.http.get<Actor[]>(this.baseUrl + "actors/film/" + id);
+  checkids(id) {
+    return;
+  }
+  getFilmActors(id: number): Observable<any> {
+    const film = FILM_MOCK.content.find(v => v.id == id);
+
+    const filteredFIlms = ACTOR_MOCK.content.filter(value => {
+      let movie;
+      film.actors.forEach(element => {
+        if (value.id == element) {
+          movie = value;
+        }
+      });
+
+      return movie;
+    });
+
+    return of(filteredFIlms);
   }
 
   updateFilmActors(id: number, actors: Actor[]): Observable<Film> {
